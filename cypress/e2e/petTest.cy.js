@@ -105,11 +105,6 @@ it('Update pet with id using form data', () => {
       expect(response.body.name).to.be.equal(data.name);
     })  
 
-  /*return await fetch('/pet/${pet.id}', {
-    method: 'POST',
-    body: data,
-  })*/  
-
   cy.request('GET', `/pet/${pet.id}`).then( response => {
     expect(response.status).to.be.equal(200);
     expect(response.body.id).to.be.equal(pet.id);
@@ -125,7 +120,6 @@ it('Delete pet with id', () => {
   cy.request({
     method: 'DELETE',
     url: `/pet/${pet.id}`,
-    //body: pet,
     failOnStatusCode: false
   }).then( response => {
     expect(response.status).to.be.equal(200);
@@ -134,7 +128,7 @@ it('Delete pet with id', () => {
 
   cy.request({ method: 'GET', url: `/pet/${pet.id}`, failOnStatusCode: false}).then( response => {
     expect(response.status).to.be.equal(404);
-    //expect(response.id).to.be.equal(400);
+    
     
   })
 })
